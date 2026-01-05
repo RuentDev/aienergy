@@ -4,7 +4,7 @@ import {
   ApolloNextAppProvider,
   ApolloClient,
   InMemoryCache,
-} from "@apollo/client-integration-nextjs";
+} from "@apollo/experimental-nextjs-app-support";
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { SetContextLink } from "@apollo/client/link/context";
 import { ErrorLink } from "@apollo/client/link/error";
