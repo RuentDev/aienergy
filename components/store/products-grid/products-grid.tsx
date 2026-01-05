@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import type { Product } from "@/lib/products-data";
 
 interface ProductsGridProps {
   products: any[];
@@ -86,7 +87,10 @@ const ProductsGrid = (props: ProductsGridProps) => {
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-2xl font-bold text-accent">
-                      ${product.price}
+                      {product.price.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
                     </span>
                     <Button
                       size="sm"

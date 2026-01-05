@@ -1,13 +1,12 @@
-import { FeaturedProductsSkeleton } from "./featured-products-skeleton";
 import { AnimatedSection } from "@/components/animated-section";
 import { Card, CardContent } from "@/components/ui/card";
-
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { getStoreProducts } from "@/app/actions/products";
+import CardButton from "./card-button";
+
 interface FeaturedProductsSectionProps {
   heading?: string;
   sub_heading?: string;
@@ -21,25 +20,55 @@ export async function FeaturedProductsSection(
 ) {
   const { heading, sub_heading, slug } = props;
 
-  const { data } = await getStoreProducts({
-    filters: {
-      tags: {
-        tag: {
-          eq: "featured",
-        },
-      },
+  // const { data } = await getStoreProducts({
+  //   filters: {
+  //     tags: {
+  //       tag: {
+  //         eq: "featured",
+  //       },
+  //     },
+  //   },
+  //   pagination: {
+  //     limit: 4,
+  //   },
+  // });
+
+  // if (!data) {
+  //   return <FeaturedProductsSkeleton cardsCounts={4} />;
+  // }
+
+  // const products = data?.products;
+
+  const products = [
+    {
+      name: "SolarEdge SE10K",
+      category: "Inverters",
+      price: 2499,
+      rating: 4.8,
+      image: "/solar-inverter-product.jpg",
     },
-    pagination: {
-      limit: 4,
+    {
+      name: "Tesla Powerwall 2",
+      category: "Battery Storage",
+      price: 14500,
+      rating: 4.9,
+      image: "/home-battery-storage.jpg",
     },
-  });
-
-  if (!data) {
-    return <FeaturedProductsSkeleton cardsCounts={4} />;
-  }
-
-  const products = data?.products;
-
+    {
+      name: "Trina Solar 450W",
+      category: "Solar Panels",
+      price: 285,
+      rating: 4.7,
+      image: "/solar-panel-module.jpg",
+    },
+    {
+      name: "Fronius Primo 8.2",
+      category: "Inverters",
+      price: 2150,
+      rating: 4.8,
+      image: "/residential-inverter.jpg",
+    },
+  ];
   return (
     <AnimatedSection animation="fade-up" delay={200}>
       <section className="py-12 md:py-16 lg:py-20 bg-secondary/30">
@@ -72,8 +101,10 @@ export async function FeaturedProductsSection(
               >
                 <div className="relative h-48 md:h-56 overflow-hidden bg-secondary">
                   <Image
-                    src={product?.images[0]?.url || "/placeholder.svg"}
-                    alt={product?.images[0]?.alternativeText || ""}
+                    // alt={product?.images[0]?.alternativeText || ""}
+                    // src={product?.images[0]?.url || "/placeholder.svg"}
+                    src={product.image || "/placeholder.svg"}
+                    alt={product.name || ""}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -84,12 +115,12 @@ export async function FeaturedProductsSection(
                 </div>
                 <CardContent className="p-4 md:p-5">
                   <Badge variant="secondary" className="mb-2 text-xs">
-                    {product?.product_type}
+                    {product?.category}
                   </Badge>
                   <h3 className="font-semibold text-base md:text-lg mb-2">
                     {product?.name}
                   </h3>
-                  {/* <div className="flex items-center gap-1 mb-3">
+                  <div className="flex items-center gap-1 mb-3">
                     <Star className="w-4 h-4 fill-accent text-accent" />
                     <span className="text-sm font-medium">
                       {product.rating}
@@ -97,17 +128,15 @@ export async function FeaturedProductsSection(
                     <span className="text-xs text-muted-foreground">
                       (128 reviews)
                     </span>
-                  </div> */}
+                  </div>
                   <div className="flex items-center justify-between">
-                    {/* <span className="text-xl md:text-2xl font-bold text-accent">
-                      {product.price}
-                    </span> */}
-                    <Button
-                      size="sm"
-                      className="bg-accent hover:bg-accent/90 text-white transition-all hover:scale-105"
-                    >
-                      Add to Cart
-                    </Button>
+                    <span className="text-xl md:text-xl font-bold text-accent">
+                      {product.price.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
+                    </span>
+                    <CardButton product={product} />
                   </div>
                 </CardContent>
               </Card>

@@ -7,6 +7,7 @@ import { CartProvider } from "@/lib/cart-context";
 import { ScrollToTopWrapper } from "@/components/scroll-to-top-wrapper";
 import "./globals.css";
 import { ApolloClientWrapper } from "@/components/apollo-wrapper";
+import { Toaster } from "@/components/ui/sonner";
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
@@ -58,6 +59,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`font-sans antialiased`}>
+        <Toaster position="top-center" duration={5000} />
         <ApolloClientWrapper>
           <WarehouseProvider>
             <CartProvider>
