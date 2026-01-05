@@ -2,7 +2,7 @@ import {
   registerApolloClient,
   ApolloClient,
   InMemoryCache,
-} from "@apollo/client-integration-nextjs";
+} from "@apollo/experimental-nextjs-app-support";
 import { SetContextLink } from "@apollo/client/link/context";
 import { HttpLink, ApolloLink } from "@apollo/client";
 import { ErrorLink } from "@apollo/client/link/error";
