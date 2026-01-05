@@ -8,8 +8,7 @@ import {
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { SetContextLink } from "@apollo/client/link/context";
 import { ErrorLink } from "@apollo/client/link/error";
-import { HttpLink } from "@apollo/client";
-import { ApolloLink } from "@apollo/client";
+import { ApolloLink, HttpLink } from "@apollo/client";
 
 const PROTOCOL = process.env.NEXT_PUBLIC_BASE_PROTOCOL;
 const HOST = process.env.NEXT_PUBLIC_BASE_URL_HOST;
@@ -90,9 +89,19 @@ function makeClient() {
     }
   });
 
+  // return new ApolloClient({
+  //   cache: new InMemoryCache(),
+  //   link: ApolloLink.from([errorLink, authLink, httpLink]),
+  //   devtools: {
+  //     enabled: process.env.NODE_ENV === "development",
+  //   },
+  // });
+
   return new ApolloClient({
     cache: new InMemoryCache(),
-    link: ApolloLink.from([errorLink, authLink, httpLink]),
+    link: new HttpLink({
+      uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
+    }),
     devtools: {
       enabled: process.env.NODE_ENV === "development",
     },
