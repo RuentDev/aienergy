@@ -67,12 +67,10 @@ export function HeroSection(props: HeroSectionProps) {
             }}
           >
             <Image
+              fill
               alt={slide.title}
-              priority={index === 0}
-              className="object-cover w-full h-full"
               src={slide.image.url || "/placeholder.svg"}
-              width={1920}
-              height={1080}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
           <div className="absolute inset-0 bg-linear-to-r from-black/70 to-black/30" />

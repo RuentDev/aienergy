@@ -233,7 +233,11 @@ export default function ProductsPage() {
               ))}
             </div>
 
-            <ProductsGrid products={filteredProducts} warehouse={warehouse} />
+            <ProductsGrid
+              products={filteredProducts}
+              warehouse={warehouse}
+              addToCart={(product) => addToCart(product)}
+            />
           </main>
         </div>
       </div>

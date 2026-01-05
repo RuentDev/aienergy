@@ -9,10 +9,11 @@ import { Button } from "@/components/ui/button";
 interface ProductsGridProps {
   products: any[];
   warehouse: string;
+  addToCart: (product: any) => void;
 }
 
 const ProductsGrid = (props: ProductsGridProps) => {
-  const { products, warehouse } = props;
+  const { products, warehouse, addToCart } = props;
 
   return (
     <div>
@@ -32,9 +33,10 @@ const ProductsGrid = (props: ProductsGridProps) => {
                 <Link href={`/products/${product.id}`}>
                   <div className="relative h-56 overflow-hidden bg-secondary">
                     <Image
-                      src={product.image || "/placeholder.svg"}
-                      alt={product.name}
                       fill
+                      alt={product.name}
+                      src={product.image || "/placeholder.svg"}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     {product.stock[warehouse] < 20 &&
@@ -89,11 +91,8 @@ const ProductsGrid = (props: ProductsGridProps) => {
                     <Button
                       size="sm"
                       disabled={product.stock[warehouse] === 0}
-                      className="bg-accent hover:bg-accent/90 text-white transition-all hover:scale-105 disabled:opacity-50"
-                      // onClick={(e) => {
-                      //   e.preventDefault();
-                      //   addToCart(product);
-                      // }}
+                      className="bg-accent hover:bg-accent/90 text-white transition-all hover:scale-105 disabled:opacity-50 cursor-pointer"
+                      onClick={() => addToCart(product)}
                     >
                       Add to Cart
                     </Button>
