@@ -4,39 +4,39 @@ import Filter from "./filter";
 
 interface DesktopFilterProps {
   activeFiltersCount: number;
-  selectedCategory: string;
-  setSelectedCategory: (category: string) => void;
-  selectedBrand: string;
-  setSelectedBrand: (brand: string) => void;
-  selectedColor: string;
-  setSelectedColor: (color: string) => void;
-  selectedInverterType: string;
-  setSelectedInverterType: (inverterType: string) => void;
-  selectedPhaseSupport: string;
-  setSelectedPhaseSupport: (phaseSupport: string) => void;
-  selectedPowerRating: string;
-  setSelectedPowerRating: (powerRating: string) => void;
-  selectedWarranty: string;
-  setSelectedWarranty: (warranty: string) => void;
+  selectedCategory: string[];
+  toggleCategory: (category: string) => void;
+  selectedBrand: string[];
+  toggleBrand: (brand: string) => void;
+  selectedColor: string[];
+  toggleColor: (color: string) => void;
+  selectedInverterType: string[];
+  toggleInverterType: (inverterType: string) => void;
+  selectedPhaseSupport: string[];
+  togglePhaseSupport: (phaseSupport: string) => void;
+  selectedPowerRating: string[];
+  togglePowerRating: (powerRating: string) => void;
+  selectedWarranty: string[];
+  toggleWarranty: (warranty: string) => void;
   clearAllFilters: () => void;
 }
 const DesktopFilter = (props: DesktopFilterProps) => {
   const {
     activeFiltersCount,
     selectedCategory,
-    setSelectedCategory,
+    toggleCategory,
     selectedBrand,
-    setSelectedBrand,
+    toggleBrand,
     selectedColor,
-    setSelectedColor,
+    toggleColor,
     selectedInverterType,
-    setSelectedInverterType,
+    toggleInverterType,
     selectedPhaseSupport,
-    setSelectedPhaseSupport,
+    togglePhaseSupport,
     selectedPowerRating,
-    setSelectedPowerRating,
+    togglePowerRating,
     selectedWarranty,
-    setSelectedWarranty,
+    toggleWarranty,
     clearAllFilters,
   } = props;
   return (
@@ -55,19 +55,19 @@ const DesktopFilter = (props: DesktopFilterProps) => {
         </div>
         <Filter
           selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
+          toggleCategory={toggleCategory}
           selectedBrand={selectedBrand}
-          setSelectedBrand={setSelectedBrand}
+          toggleBrand={toggleBrand}
           selectedColor={selectedColor}
-          setSelectedColor={setSelectedColor}
+          toggleColor={toggleColor}
           selectedInverterType={selectedInverterType}
-          setSelectedInverterType={setSelectedInverterType}
+          toggleInverterType={toggleInverterType}
           selectedPhaseSupport={selectedPhaseSupport}
-          setSelectedPhaseSupport={setSelectedPhaseSupport}
+          togglePhaseSupport={togglePhaseSupport}
           selectedPowerRating={selectedPowerRating}
-          setSelectedPowerRating={setSelectedPowerRating}
+          togglePowerRating={togglePowerRating}
           selectedWarranty={selectedWarranty}
-          setSelectedWarranty={setSelectedWarranty}
+          toggleWarranty={toggleWarranty}
           clearAllFilters={clearAllFilters}
           activeFiltersCount={activeFiltersCount}
         />

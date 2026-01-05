@@ -26,19 +26,32 @@ export default function ProductsPage() {
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("search") || "";
 
-  const [selectedCategory, setSelectedCategory] =
-    useState<string>("All Categories");
-  const [selectedBrand, setSelectedBrand] = useState<string>("All Brands");
-  const [selectedColor, setSelectedColor] = useState<string>("All Colours");
-  const [selectedInverterType, setSelectedInverterType] =
-    useState<string>("All Types");
-  const [selectedPhaseSupport, setSelectedPhaseSupport] =
-    useState<string>("All Phases");
-  const [selectedPowerRating, setSelectedPowerRating] =
-    useState<string>("All Ratings");
-  const [selectedWarranty, setSelectedWarranty] =
-    useState<string>("All Warranties");
+  // State for filters (Array of strings)
+  const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
+  const [selectedBrand, setSelectedBrand] = useState<string[]>([]);
+  const [selectedColor, setSelectedColor] = useState<string[]>([]);
+  const [selectedInverterType, setSelectedInverterType] = useState<string[]>(
+    []
+  );
+  const [selectedPhaseSupport, setSelectedPhaseSupport] = useState<string[]>(
+    []
+  );
+  const [selectedPowerRating, setSelectedPowerRating] = useState<string[]>([]);
+  const [selectedWarranty, setSelectedWarranty] = useState<string[]>([]);
+
   const [sortBy, setSortBy] = useState<string>("featured");
+
+  // Toggle Helper
+  const toggleFilter = (
+    value: string,
+    setState: React.Dispatch<React.SetStateAction<string[]>>
+  ) => {
+    setState((prev) =>
+      prev.includes(value)
+        ? prev.filter((item) => item !== value)
+        : [...prev, value]
+    );
+  };
 
   const filteredProducts = useMemo(() => {
     let filtered = [...products];
@@ -53,41 +66,58 @@ export default function ProductsPage() {
       );
     }
 
-    if (selectedCategory !== "All Categories") {
-      filtered = filtered.filter(
-        (product) => product.category === selectedCategory
+    // Category Filter
+    if (selectedCategory.length > 0) {
+      filtered = filtered.filter((product) =>
+        selectedCategory.includes(product.category)
       );
     }
 
-    if (selectedBrand !== "All Brands") {
-      filtered = filtered.filter((product) => product.brand === selectedBrand);
-    }
-
-    if (selectedColor !== "All Colours") {
-      filtered = filtered.filter((product) => product.color === selectedColor);
-    }
-
-    if (selectedInverterType !== "All Types") {
-      filtered = filtered.filter(
-        (product) => product.inverterType === selectedInverterType
+    // Brand Filter
+    if (selectedBrand.length > 0) {
+      filtered = filtered.filter((product) =>
+        selectedBrand.includes(product.brand)
       );
     }
 
-    if (selectedPhaseSupport !== "All Phases") {
-      filtered = filtered.filter(
-        (product) => product.phaseSupport === selectedPhaseSupport
+    // Color Filter
+    if (selectedColor.length > 0) {
+      filtered = filtered.filter((product) =>
+        selectedColor.includes(product.color)
       );
     }
 
-    if (selectedPowerRating !== "All Ratings") {
+    // Inverter Type Filter
+    if (selectedInverterType.length > 0) {
       filtered = filtered.filter(
-        (product) => product.powerRating === selectedPowerRating
+        (product) =>
+          product.inverterType &&
+          selectedInverterType.includes(product.inverterType)
       );
     }
 
-    if (selectedWarranty !== "All Warranties") {
+    // Phase Support Filter
+    if (selectedPhaseSupport.length > 0) {
       filtered = filtered.filter(
-        (product) => product.warranty === selectedWarranty
+        (product) =>
+          product.phaseSupport &&
+          selectedPhaseSupport.includes(product.phaseSupport)
+      );
+    }
+
+    // Power Rating Filter
+    if (selectedPowerRating.length > 0) {
+      filtered = filtered.filter(
+        (product) =>
+          product.powerRating &&
+          selectedPowerRating.includes(product.powerRating)
+      );
+    }
+
+    // Warranty Filter
+    if (selectedWarranty.length > 0) {
+      filtered = filtered.filter((product) =>
+        selectedWarranty.includes(product.warranty)
       );
     }
 
@@ -123,23 +153,23 @@ export default function ProductsPage() {
   ]);
 
   const clearAllFilters = () => {
-    setSelectedCategory("All Categories");
-    setSelectedBrand("All Brands");
-    setSelectedColor("All Colours");
-    setSelectedInverterType("All Types");
-    setSelectedPhaseSupport("All Phases");
-    setSelectedPowerRating("All Ratings");
-    setSelectedWarranty("All Warranties");
+    setSelectedCategory([]);
+    setSelectedBrand([]);
+    setSelectedColor([]);
+    setSelectedInverterType([]);
+    setSelectedPhaseSupport([]);
+    setSelectedPowerRating([]);
+    setSelectedWarranty([]);
   };
 
   const activeFiltersCount =
-    (selectedCategory !== "All Categories" ? 1 : 0) +
-    (selectedBrand !== "All Brands" ? 1 : 0) +
-    (selectedColor !== "All Colours" ? 1 : 0) +
-    (selectedInverterType !== "All Types" ? 1 : 0) +
-    (selectedPhaseSupport !== "All Phases" ? 1 : 0) +
-    (selectedPowerRating !== "All Ratings" ? 1 : 0) +
-    (selectedWarranty !== "All Warranties" ? 1 : 0);
+    selectedCategory.length +
+    selectedBrand.length +
+    selectedColor.length +
+    selectedInverterType.length +
+    selectedPhaseSupport.length +
+    selectedPowerRating.length +
+    selectedWarranty.length;
 
   return (
     <div className="min-h-screen bg-background">
@@ -152,19 +182,25 @@ export default function ProductsPage() {
             activeFiltersCount={activeFiltersCount}
             clearAllFilters={clearAllFilters}
             selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
+            toggleCategory={(val) => toggleFilter(val, setSelectedCategory)}
             selectedBrand={selectedBrand}
-            setSelectedBrand={setSelectedBrand}
+            toggleBrand={(val) => toggleFilter(val, setSelectedBrand)}
             selectedColor={selectedColor}
-            setSelectedColor={setSelectedColor}
+            toggleColor={(val) => toggleFilter(val, setSelectedColor)}
             selectedInverterType={selectedInverterType}
-            setSelectedInverterType={setSelectedInverterType}
+            toggleInverterType={(val) =>
+              toggleFilter(val, setSelectedInverterType)
+            }
             selectedPhaseSupport={selectedPhaseSupport}
-            setSelectedPhaseSupport={setSelectedPhaseSupport}
+            togglePhaseSupport={(val) =>
+              toggleFilter(val, setSelectedPhaseSupport)
+            }
             selectedPowerRating={selectedPowerRating}
-            setSelectedPowerRating={setSelectedPowerRating}
+            togglePowerRating={(val) =>
+              toggleFilter(val, setSelectedPowerRating)
+            }
             selectedWarranty={selectedWarranty}
-            setSelectedWarranty={setSelectedWarranty}
+            toggleWarranty={(val) => toggleFilter(val, setSelectedWarranty)}
           />
           {/* Main Content */}
           <main>
@@ -184,7 +220,34 @@ export default function ProductsPage() {
 
               <div className="flex items-center gap-3 w-full sm:w-auto">
                 {/* Mobile Filter */}
-                <Mobile activeFiltersCount={activeFiltersCount} />
+                <Mobile
+                  activeFiltersCount={activeFiltersCount}
+                  clearAllFilters={clearAllFilters}
+                  selectedCategory={selectedCategory}
+                  toggleCategory={(val) =>
+                    toggleFilter(val, setSelectedCategory)
+                  }
+                  selectedBrand={selectedBrand}
+                  toggleBrand={(val) => toggleFilter(val, setSelectedBrand)}
+                  selectedColor={selectedColor}
+                  toggleColor={(val) => toggleFilter(val, setSelectedColor)}
+                  selectedInverterType={selectedInverterType}
+                  toggleInverterType={(val) =>
+                    toggleFilter(val, setSelectedInverterType)
+                  }
+                  selectedPhaseSupport={selectedPhaseSupport}
+                  togglePhaseSupport={(val) =>
+                    toggleFilter(val, setSelectedPhaseSupport)
+                  }
+                  selectedPowerRating={selectedPowerRating}
+                  togglePowerRating={(val) =>
+                    toggleFilter(val, setSelectedPowerRating)
+                  }
+                  selectedWarranty={selectedWarranty}
+                  toggleWarranty={(val) =>
+                    toggleFilter(val, setSelectedWarranty)
+                  }
+                />
 
                 {/* Sort */}
                 <Select value={sortBy} onValueChange={setSortBy}>
@@ -206,24 +269,18 @@ export default function ProductsPage() {
               </div>
             </div>
 
-            {/* Category Chips */}
+            {/* Category Chips - Optional: Keep or Remove? Keeping for now but updating logic */}
             <div className="flex flex-wrap gap-2 mb-6">
               {categories.map((category) => (
                 <Button
                   key={category}
                   variant={
-                    selectedCategory === category ? "default" : "outline"
+                    selectedCategory.includes(category) ? "default" : "outline"
                   }
                   size="sm"
-                  onClick={() =>
-                    setSelectedCategory(
-                      category === selectedCategory
-                        ? "All Categories"
-                        : category
-                    )
-                  }
+                  onClick={() => toggleFilter(category, setSelectedCategory)}
                   className={
-                    selectedCategory === category
+                    selectedCategory.includes(category)
                       ? "bg-accent hover:bg-accent/90 text-white"
                       : "hover:border-accent hover:bg-accent hover:text-white dark:hover:text-black transition-all duration-200"
                   }

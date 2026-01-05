@@ -13,8 +13,26 @@ import Filter from "./filter";
 
 interface MobileProps {
   activeFiltersCount: number;
+  clearAllFilters: () => void;
+
+  selectedCategory: string[];
+  toggleCategory: (category: string) => void;
+  selectedBrand: string[];
+  toggleBrand: (brand: string) => void;
+  selectedColor: string[];
+  toggleColor: (color: string) => void;
+  selectedInverterType: string[];
+  toggleInverterType: (type: string) => void;
+  selectedPhaseSupport: string[];
+  togglePhaseSupport: (phase: string) => void;
+  selectedPowerRating: string[];
+  togglePowerRating: (rating: string) => void;
+  selectedWarranty: string[];
+  toggleWarranty: (warranty: string) => void;
 }
-const Mobile = ({ activeFiltersCount }: MobileProps) => {
+
+const Mobile = (props: MobileProps) => {
+  const { activeFiltersCount } = props;
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -38,9 +56,7 @@ const Mobile = ({ activeFiltersCount }: MobileProps) => {
         <SheetHeader>
           <SheetTitle>Filters</SheetTitle>
         </SheetHeader>
-        <ScrollArea className="h-[calc(100vh-100px)] mt-6 pr-4">
-          {/* <Filter /> */}
-        </ScrollArea>
+        <Filter {...props} />
       </SheetContent>
     </Sheet>
   );
