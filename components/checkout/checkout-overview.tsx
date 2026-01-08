@@ -114,7 +114,7 @@ export function CheckoutOverview({
 
       {/* Order Items */}
       <Card className="border-border/50 shadow-lg overflow-hidden pt-0 pb-5">
-        <CardHeader className="p-5 bg-gradient-to-r from-accent/10 to-transparent border-b border-border/50">
+        <CardHeader className="p-5 bg-linear-to-r from-accent/10 to-transparent border-b border-border/50">
           <div className="flex items-center justify-between">
             <CardTitle className="flex items-center gap-2">
               <ShoppingBag className="w-5 h-5 text-accent" />
@@ -186,7 +186,7 @@ export function CheckoutOverview({
 
       {/* Shipping / Pickup Details */}
       <Card className="border-border/50 shadow-lg overflow-hidden pt-0 pb-5">
-        <CardHeader className="p-5 bg-gradient-to-r from-accent/10 to-transparent border-b border-border/50">
+        <CardHeader className="p-5 bg-linear-to-r from-accent/10 to-transparent border-b border-border/50">
           <div className="flex items-center justify-between">
             <CardTitle className="flex items-center gap-2">
               {checkoutData.deliveryMethod === "delivery" ? (
@@ -302,7 +302,7 @@ export function CheckoutOverview({
 
       {/* Payment Details */}
       <Card className="border-border/50 shadow-lg overflow-hidden pt-0 pb-5">
-        <CardHeader className="p-5 bg-gradient-to-r from-accent/10 to-transparent border-b border-border/50">
+        <CardHeader className="p-5 bg-linear-to-r from-accent/10 to-transparent border-b border-border/50">
           <div className="flex items-center justify-between">
             <CardTitle className="flex items-center gap-2">
               {checkoutData.paymentMethod === "credit-card" && (

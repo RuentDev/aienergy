@@ -21,3 +21,14 @@ export const getStoreProducts = async (
 
   return res;
 };
+
+export const getAdminProducts = async (
+  variables?: GetStoreProductsQueryVariables
+): Promise<ApolloLink.Result<GetStoreProductsQuery>> => {
+  const res = await client.query({
+    query: PRODUCT_OPERATIONS.Query.adminProducts,
+    variables,
+  });
+
+  return res;
+};

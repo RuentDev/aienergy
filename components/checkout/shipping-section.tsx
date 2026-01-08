@@ -119,7 +119,7 @@ export function ShippingSection({
     <div className="space-y-6 animate-fade-in-up">
       {/* Delivery Method Selection */}
       <Card className="border-border/50 shadow-lg overflow-hidden pt-0 pb-5">
-        <CardHeader className="p-5 bg-gradient-to-r from-accent/10 to-transparent border-b border-border/50">
+        <CardHeader className="p-5 bg-linear-to-r from-accent/10 to-transparent border-b border-border/50">
           <CardTitle className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center">
               <Truck className="w-4 h-4 text-accent" />
@@ -235,7 +235,7 @@ export function ShippingSection({
       {/* Delivery Details */}
       {checkoutData.deliveryMethod === "delivery" && (
         <Card className="border-border/50 shadow-lg overflow-hidden animate-fade-in-up pt-0 pb-5">
-          <CardHeader className="p-5 bg-gradient-to-r from-accent/10 to-transparent border-b border-border/50">
+          <CardHeader className="p-5 bg-linear-to-r from-accent/10 to-transparent border-b border-border/50">
             <div className="flex items-center justify-between">
               <CardTitle className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center">
@@ -408,7 +408,7 @@ export function ShippingSection({
       {checkoutData.deliveryMethod === "pickup" && (
         <div className="space-y-6 animate-fade-in-up">
           <Card className="border-border/50 shadow-lg overflow-hidden">
-            <CardHeader className="bg-gradient-to-r from-accent/10 to-transparent border-b border-border/50">
+            <CardHeader className="bg-linear-to-r from-accent/10 to-transparent border-b border-border/50">
               <CardTitle className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center">
                   <Building className="w-4 h-4 text-accent" />
@@ -436,7 +436,7 @@ export function ShippingSection({
           </Card>
 
           <Card className="border-border/50 shadow-lg overflow-hidden">
-            <CardHeader className="bg-gradient-to-r from-accent/10 to-transparent border-b border-border/50">
+            <CardHeader className="bg-linear-to-r from-accent/10 to-transparent border-b border-border/50">
               <CardTitle className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center">
                   <CalendarIcon className="w-4 h-4 text-accent" />
@@ -483,7 +483,7 @@ export function ShippingSection({
           </Card>
 
           <Card className="border-border/50 shadow-lg overflow-hidden">
-            <CardHeader className="bg-gradient-to-r from-accent/10 to-transparent border-b border-border/50">
+            <CardHeader className="bg-linear-to-r from-accent/10 to-transparent border-b border-border/50">
               <CardTitle className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center">
                   <Clock className="w-4 h-4 text-accent" />
@@ -567,7 +567,7 @@ export function ShippingSection({
           </Card>
 
           <Card className="border-border/50 shadow-lg overflow-hidden">
-            <CardHeader className="bg-gradient-to-r from-accent/10 to-transparent border-b border-border/50">
+            <CardHeader className="bg-linear-to-r from-accent/10 to-transparent border-b border-border/50">
               <CardTitle>Pickup Notes</CardTitle>
             </CardHeader>
             <CardContent className="pt-6">

@@ -53,7 +53,7 @@ export function PaymentSection({
   return (
     <div className="space-y-6 animate-fade-in-up">
       <Card className="border-border/50 shadow-lg overflow-hidden pt-0 pb-5">
-        <CardHeader className="pt-5 bg-gradient-to-r from-accent/10 to-transparent border-b border-border/50">
+        <CardHeader className="pt-5 bg-linear-to-r from-accent/10 to-transparent border-b border-border/50">
           <CardTitle className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center">
               <CreditCard className="w-4 h-4 text-accent" />
@@ -185,8 +185,8 @@ export function PaymentSection({
 
       {/* Credit Card Form */}
       {checkoutData.paymentMethod === "credit-card" && (
-        <Card className="border-border/50 shadow-lg overflow-hidden animate-fade-in-up">
-          <CardHeader className="bg-gradient-to-r from-accent/10 to-transparent border-b border-border/50">
+        <Card className="border-border/50 shadow-lg overflow-hidden animate-fade-in-up pt-0 pb-5">
+          <CardHeader className="p-5 bg-linear-to-r from-accent/10 to-transparent border-b border-border/50">
             <CardTitle className="flex items-center gap-2">
               <Lock className="w-4 h-4 text-accent" />
               Card Details
@@ -261,7 +261,7 @@ export function PaymentSection({
       {/* Bank Transfer Details */}
       {checkoutData.paymentMethod === "bank-transfer" && (
         <Card className="border-border/50 shadow-lg overflow-hidden animate-fade-in-up pt-0 pb-5">
-          <CardHeader className="pt-5 bg-gradient-to-r from-accent/10 to-transparent border-b border-border/50">
+          <CardHeader className="pt-5 bg-linear-to-r from-accent/10 to-transparent border-b border-border/50">
             <CardTitle className="flex items-center gap-2">
               <Building2 className="w-4 h-4 text-accent" />
               Bank Transfer Details
@@ -298,7 +298,7 @@ export function PaymentSection({
       {/* Account Credit Details */}
       {checkoutData.paymentMethod === "account-credit" && (
         <Card className="border-border/50 shadow-lg overflow-hidden animate-fade-in-up pt-0 pb-5">
-          <CardHeader className="pt-5 bg-gradient-to-r from-accent/10 to-transparent border-b border-border/50">
+          <CardHeader className="pt-5 bg-linear-to-r from-accent/10 to-transparent border-b border-border/50">
             <CardTitle className="flex items-center gap-2">
               <Wallet className="w-4 h-4 text-accent" />
               Account Credit

@@ -30,7 +30,12 @@ import { ThemeToggle } from "@/components/theme-toggle";
 
 const navItems = [
   { icon: LayoutDashboard, label: "Home", href: "/admin" },
-  { icon: ShoppingCart, label: "Orders", href: "/admin/orders", badge: 12 },
+  {
+    icon: ShoppingCart,
+    label: "Orders",
+    href: "/admin/orders",
+    notification: 12,
+  },
   { icon: Package, label: "Products", href: "/admin/products" },
   { icon: Users, label: "Users", href: "/admin/users", notification: 5 },
   { icon: DollarSign, label: "Finance", href: "/admin/finance" },
@@ -102,7 +107,7 @@ export default function AdminLayout({
             <div className="relative h-full flex flex-col">
               {/* Logo - Fixed */}
               <div className="h-16 flex items-center justify-between px-6 border-b border-border shrink-0">
-                <h1 className="text-xl font-bold bg-gradient-to-r from-accent to-accent/60 bg-clip-text text-transparent">
+                <h1 className="text-xl font-bold bg-linear-to-r from-accent to-accent/60 bg-clip-text text-transparent">
                   AI Energy Admin
                 </h1>
               </div>
@@ -144,15 +149,15 @@ export default function AdminLayout({
                         <span className="font-medium">{item.label}</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        {item.badge && (
+                        {/* {item?.badge && (
                           <Badge className="bg-destructive text-destructive-foreground">
                             {item.badge}
                           </Badge>
-                        )}
-                        {item.notification && (
+                        )} */}
+                        {item?.notification && (
                           <div className="relative">
                             <Bell className="h-4 w-4" />
-                            <span className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-destructive flex items-center justify-center text-[8px] font-bold">
+                            <span className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-destructive flex items-center justify-center text-[8px] font-bold text-white">
                               {item.notification}
                             </span>
                           </div>

@@ -31,7 +31,7 @@ function makeClient() {
         typeof window !== "undefined"
           ? document.cookie
               .split("; ")
-              .find((row) => row.startsWith("a-token="))
+              .find((row) => row.startsWith("auth_token="))
               ?.split("=")[1]
           : undefined;
     } else {
