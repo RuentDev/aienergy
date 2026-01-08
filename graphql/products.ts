@@ -38,32 +38,24 @@ const schema = {
             documentId
             tag
           }
-          files {
-            documentId
-            name
-            alternativeText
-            url
-          }
           images {
             documentId
             name
             alternativeText
             url
           }
-          specifications {
-            documentId
-            key
-            value
-          }
-          key_features {
-            documentId
-            feature
-          }
           inventory {
             documentId
             melbourne
             sydney
             brisbane
+          }
+          price_lists {
+            comparePrice
+            price
+            max_quantity
+            min_quantity
+            user_level
           }
           shipping {
             documentId
@@ -100,27 +92,10 @@ const schema = {
             name
             url
             handle
-            image {
-              documentId
-              name
-              alternativeText
-              url
-            }
-          }
-          collections {
-            documentId
-            title
-            handle
           }
           tags {
             documentId
             tag
-          }
-          files {
-            documentId
-            name
-            alternativeText
-            url
           }
           images {
             documentId
@@ -128,33 +103,27 @@ const schema = {
             alternativeText
             url
           }
-          specifications {
-            documentId
-            key
-            value
-          }
-          key_features {
-            documentId
-            feature
-          }
           inventory {
             documentId
             melbourne
             sydney
             brisbane
           }
-          shipping {
-            documentId
-            height
-            width
-            length
-            weight
+          price_lists {
+            comparePrice
+            price
+            max_quantity
+            min_quantity
+            user_level
           }
           maxQuantity
           maxQuantityForLargeShipment
           createdAt
           updatedAt
           releasedAt
+          madeBy {
+            name
+          }
         }
       }
     `),

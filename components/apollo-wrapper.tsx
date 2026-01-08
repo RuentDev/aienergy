@@ -4,7 +4,7 @@ import {
   ApolloNextAppProvider,
   ApolloClient,
   InMemoryCache,
-} from "@apollo/experimental-nextjs-app-support";
+} from "@apollo/client-integration-nextjs";
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { SetContextLink } from "@apollo/client/link/context";
 import { ErrorLink } from "@apollo/client/link/error";
@@ -99,9 +99,7 @@ function makeClient() {
 
   return new ApolloClient({
     cache: new InMemoryCache(),
-    link: new HttpLink({
-      uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
-    }),
+    link: ApolloLink.from([errorLink, authLink, httpLink]),
     devtools: {
       enabled: process.env.NODE_ENV === "development",
     },
