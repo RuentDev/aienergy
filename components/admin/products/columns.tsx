@@ -3,9 +3,9 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Edit, Trash2, Package } from "lucide-react";
-import Image from "next/image";
+import { Edit } from "lucide-react";
 import { Product } from "@/lib/gql/graphql"; // Or wherever the generated types are located
+import Image from "next/image";
 import Link from "next/link";
 
 // Helper to calculate total stock
@@ -32,7 +32,32 @@ const getPrice = (priceLists: any[]) => {
     : "N/A";
 };
 
+import { Checkbox } from "@/components/ui/checkbox";
+import { cn } from "@/lib/utils";
+
 export const columns: ColumnDef<Product>[] = [
+  {
+    id: "select",
+    header: ({ table }) => (
+      <Checkbox
+        checked={
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate")
+        }
+        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        aria-label="Select all"
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        aria-label="Select row"
+      />
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  },
   {
     accessorKey: "images",
     header: "Image",
@@ -93,18 +118,25 @@ export const columns: ColumnDef<Product>[] = [
     header: "Status",
     cell: ({ row }) => {
       let status = "Draft";
-      let variant: "default" | "secondary" | "destructive" = "default";
+      let variant: "secondary" | "outline" | "default" | "destructive" =
+        "secondary";
 
       if (row.original.releasedAt) {
         status = "Published";
-        variant = "default";
+        variant = "secondary";
       } else {
         status = "Draft";
-        variant = "default";
+        variant = "outline";
       }
 
       return (
-        <Badge variant={variant} className="text-xs">
+        <Badge
+          variant={variant}
+          className={cn(
+            "text-xs",
+            variant === "secondary" && "bg-accent text-accent-foreground"
+          )}
+        >
           {status}
         </Badge>
       );
@@ -147,13 +179,13 @@ export const columns: ColumnDef<Product>[] = [
             </Button>
           </Link>
 
-          <Button
+          {/* <Button
             size="sm"
             variant="ghost"
             className="hover:bg-destructive hover:text-destructive-foreground h-8 w-8 p-0"
           >
             <Trash2 className="h-4 w-4" />
-          </Button>
+          </Button> */}
         </div>
       );
     },

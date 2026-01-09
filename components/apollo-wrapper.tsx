@@ -98,7 +98,13 @@ function makeClient() {
   // });
 
   return new ApolloClient({
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      typePolicies: {
+        Product: {
+          keyFields: ["documentId"],
+        },
+      },
+    }),
     link: ApolloLink.from([errorLink, authLink, httpLink]),
     devtools: {
       enabled: process.env.NODE_ENV === "development",

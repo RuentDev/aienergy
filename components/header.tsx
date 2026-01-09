@@ -146,19 +146,7 @@ export function Header() {
         {/* Mobile Header */}
         <div className="lg:hidden flex items-center justify-between h-16 md:h-20 gap-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 shrink-0 group">
-            <div className="w-10 h-10 md:w-12 md:h-12 bg-accent rounded-lg flex items-center justify-center transition-transform group-hover:scale-105">
-              <Zap className="w-6 h-6 md:w-7 md:h-7 text-white" />
-            </div>
-            <div className="hidden sm:flex flex-col">
-              <span className="font-bold text-base md:text-lg">
-                AI Energy Shop
-              </span>
-              <span className="text-xs text-muted-foreground">
-                Australian Wholesale
-              </span>
-            </div>
-          </Link>
+          <Logo />
 
           {/* Right Actions */}
           <div className="flex items-center gap-2 md:gap-3">

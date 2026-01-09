@@ -128,6 +128,23 @@ const schema = {
       }
     `),
   },
+  Mutation: {
+    deleteProduct: graphql(`
+      mutation DeleteProduct($documentId: ID!) {
+        deleteProduct(documentId: $documentId) {
+          documentId
+        }
+      }
+    `),
+    updateProduct: graphql(`
+      mutation UpdateProduct($documentId: ID!, $data: ProductInput!) {
+        updateProduct(documentId: $documentId, data: $data) {
+          documentId
+          releasedAt
+        }
+      }
+    `),
+  },
 };
 
 export default schema;

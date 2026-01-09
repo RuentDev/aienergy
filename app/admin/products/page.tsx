@@ -1,77 +1,22 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, Plus } from "lucide-react";
-
+import { Search, Plus, FilePlus2, Upload } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import DataTable from "@/components/admin/products/data-table";
-
-// const products = [
-//   {
-//     id: 1,
-//     name: "SolarEdge SE10K Inverter",
-//     category: "Inverters",
-//     stock: 45,
-//     price: "$2,499.00",
-//     status: "In Stock",
-//     image: "/solar-inverter-product.jpg",
-//   },
-//   {
-//     id: 2,
-//     name: "Tesla Powerwall 2",
-//     category: "Battery Storage",
-//     stock: 12,
-//     price: "$14,500.00",
-//     status: "Low Stock",
-//     image: "/home-battery-storage.jpg",
-//   },
-//   {
-//     id: 3,
-//     name: "Trina Solar 450W Panel",
-//     category: "Solar Panels",
-//     stock: 156,
-//     price: "$285.00",
-//     status: "In Stock",
-//     image: "/solar-panel-module.jpg",
-//   },
-//   {
-//     id: 4,
-//     name: "Fronius Primo 8.2 Inverter",
-//     category: "Inverters",
-//     stock: 0,
-//     price: "$2,150.00",
-//     status: "Out of Stock",
-//     image: "/residential-inverter.jpg",
-//   },
-//   {
-//     id: 5,
-//     name: "Enphase IQ8+ Microinverter",
-//     category: "Inverters",
-//     stock: 89,
-//     price: "$349.00",
-//     status: "In Stock",
-//     image: "/modern-solar-inverter.png",
-//   },
-//   {
-//     id: 6,
-//     name: "LG Chem RESU 10H",
-//     category: "Battery Storage",
-//     stock: 8,
-//     price: "$9,200.00",
-//     status: "Low Stock",
-//     image: "/battery-energy-storage-system.jpg",
-//   },
-// ];
+import Link from "next/link";
+import FileUpload from "@/components/admin/products/products-upload";
 
 export default async function ProductsPage() {
-  // const [searchTerm, setSearchTerm] = useState("");
-
-  // const filteredProducts = products.filter(
-  //   (product) =>
-  //     product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  //     product.category.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
-
-  // const { data } = await getAdminProducts();
-
   return (
     <div className="space-y-6 animate-fade-in-up">
       {/* Header */}
@@ -82,10 +27,38 @@ export default async function ProductsPage() {
             Manage your product inventory
           </p>
         </div>
-        <Button className="bg-accent hover:bg-accent/90 gap-2">
-          <Plus className="h-4 w-4" />
-          Add Product
-        </Button>
+        <div className="flex gap-2">
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button className="gap-2">
+                <FilePlus2 className="h-4 w-4" />
+                Import
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Bulk Import</AlertDialogTitle>
+                <AlertDialogDescription>
+                  Supported file formats: .csv
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <FileUpload />
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+                  Import
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+
+          <Link href="/admin/products/add">
+            <Button className="bg-accent hover:bg-accent/90 gap-2">
+              <Plus className="h-4 w-4" />
+              Add Product
+            </Button>
+          </Link>
+        </div>
       </div>
 
       <div className="relative">
